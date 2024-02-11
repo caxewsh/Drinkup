@@ -49,7 +49,6 @@ export default function HomeScreen() {
             </Text>
           </TouchableOpacity>
         </View>
-        <ImageBackground/>
       </SafeAreaView>
     </View>
   );

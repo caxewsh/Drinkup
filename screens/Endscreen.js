@@ -1,4 +1,4 @@
-import { View, Text, ImageBackground, TouchableOpacity } from "react-native";
+import { View, Text, ImageBackground, TouchableOpacity, FlatList } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
@@ -32,6 +32,31 @@ export default function Endscreen() {
             <HomeIcon color="white" size="30" className=""/>
             </TouchableOpacity>
             <Text className="text-white absolute left-28 text-2xl font-black">Classement</Text>
+        </View>
+        {/* Ranking Table */}
+        <View
+          style={{ backgroundColor: "rgba(255, 255, 255, 0.1)" }}
+          className="flex-1 justify-center w-78 m-10 mx-4 p-10 rounded-lg"
+        >
+           
+        </View>
+        {/* Button */}
+        <View className="flex-1 justify-center items-center ">
+          <TouchableOpacity
+            
+            className=" bg-white w-50 px-4 py-4 border-solid rounded-lg mt-4 justify-center align-items-center"
+          >
+            <Text className="text-cyan-900 text-sm text-center font-bold">
+              Recommencer
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            className=" bg-white w-50 px-4 py-4 border-solid rounded-lg mt-4 justify-center align-items-center"
+          >
+            <Text className="text-cyan-900 text-sm text-center font-bold">
+              Accueil
+            </Text>
+          </TouchableOpacity>
         </View>
       </SafeAreaView>
     </View>
