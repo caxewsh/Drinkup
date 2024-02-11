@@ -1,0 +1,22 @@
+name: React Native CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js 20.10.0
+      uses: actions/setup-node@v2
+      with:
+        node-version: '20.10.0'
+    - name: Install dependencies
+      run: npm install
+    - name: Run Linter
+      run: npx eslint .
