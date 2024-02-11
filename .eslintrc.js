@@ -22,5 +22,6 @@ module.exports = {
   plugins: ["react"],
   rules: {
     quotes: ["error", "double"],
+    "react/no-unescaped-entities": 0,
   },
 };

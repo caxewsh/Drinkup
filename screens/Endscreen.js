@@ -1,4 +1,4 @@
-import { View, Text, ImageBackground, TouchableOpacity, FlatList } from "react-native";
+import { View, Text, ImageBackground, TouchableOpacity } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
@@ -41,17 +41,16 @@ export default function Endscreen() {
            
         </View>
         {/* Button */}
-        <View className="flex-1 justify-center items-center ">
+        <View className="flex-1 items-center ">
           <TouchableOpacity
-            
-            className=" bg-white w-50 px-4 py-4 border-solid rounded-lg mt-4 justify-center align-items-center"
+            className=" bg-white w-36 px-4 py-4 border-solid rounded-lg "
           >
             <Text className="text-cyan-900 text-sm text-center font-bold">
               Recommencer
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            className=" bg-white w-50 px-4 py-4 border-solid rounded-lg mt-4 justify-center align-items-center"
+            className=" bg-white w-36 px-4 py-4 border-solid rounded-lg mt-4 "
           >
             <Text className="text-cyan-900 text-sm text-center font-bold">
               Accueil

@@ -2,7 +2,7 @@ import React, { createContext, useContext, useMemo } from "react";
 
 const ImageContext = createContext();
 
-export const ImageProvider = ({ children, backgroundImageSource }) => {
+export const ImageProvider = ({ children, backgroundImageSource }) => { /* eslint-disable react/prop-types */ // TODO: upgrade to latest eslint tooling
   const contextValue = useMemo(() => ({ backgroundImageSource }), [
     backgroundImageSource,
   ]);
