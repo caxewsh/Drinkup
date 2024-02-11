@@ -93,6 +93,7 @@ export default function Gamescreen() {
   
     return (
       <View className="items-center">
+        <Text className="text-black font-semibold text-center text-sm">Thème : {item.Theme}</Text>
         <Text className="text-3xl text-white font-black p-4">{currentPlayer.name}</Text>
         <Text className="text-white font-semibold text-center text-sm">{item.Questions}</Text>
       </View>
