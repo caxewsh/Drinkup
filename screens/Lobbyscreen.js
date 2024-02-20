@@ -13,15 +13,12 @@ import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useImage } from "../provider/ImageContext";
 
-
 export default function Lobbyscreen() {
   const [playerName, setPlayerName] = useState("");
   const [players, setPlayers] = useState([]);
   const [hasCleared, setHasCleared] = useState(false);
   const [hasMinPlayer, setHasMinPlayer] = useState(false);
-  const {backgroundImageSource} = useImage();
-
-  
+  const { backgroundImageSource } = useImage();
 
   useEffect(() => {
     loadPlayers();
@@ -43,7 +40,6 @@ export default function Lobbyscreen() {
         });
     }
   }, []);
-  
 
   useEffect(() => {
     setHasMinPlayer(players.length >= 2);
@@ -121,7 +117,9 @@ export default function Lobbyscreen() {
             keyExtractor={(item) => item.id.toString()}
             renderItem={({ item }) => (
               <View className=" bg-white justify-center items-center p-4 rounded-lg my-2">
-                <Text className=" text-cyan-900 font-semibold">{item.name}</Text>
+                <Text className=" text-cyan-900 font-semibold">
+                  {item.name}
+                </Text>
               </View>
             )}
           />
