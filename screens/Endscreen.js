@@ -6,7 +6,6 @@ import { HomeIcon, ArrowPathIcon } from "react-native-heroicons/solid";
 import { useNavigation } from "@react-navigation/native";
 import { useImage } from "../provider/ImageContext";
 
-
 export default function Endscreen() {
   const { backgroundImageSource } = useImage();
   const navigation = useNavigation();
