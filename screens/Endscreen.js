@@ -2,9 +2,10 @@ import { View, Text, ImageBackground, TouchableOpacity } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
-import { HomeIcon } from "react-native-heroicons/solid";
+import { HomeIcon, ArrowPathIcon } from "react-native-heroicons/solid";
 import { useNavigation } from "@react-navigation/native";
 import { useImage } from "../provider/ImageContext";
+
 
 export default function Endscreen() {
   const { backgroundImageSource } = useImage();
@@ -36,7 +37,7 @@ export default function Endscreen() {
             <HomeIcon color="white" size="30" className="" />
           </TouchableOpacity>
           <Text className="text-white absolute left-28 text-2xl font-black">
-            Classement
+            Fin de Partie 
           </Text>
         </View>
         {/* Ranking Table */}
@@ -57,6 +58,7 @@ export default function Endscreen() {
           >
             <Text className="text-cyan-900 text-sm text-center font-bold">
               Recommencer
+              <ArrowPathIcon color="#164e63" className=" "/>
             </Text>
           </TouchableOpacity>
         </View>
