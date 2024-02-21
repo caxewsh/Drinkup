@@ -6,6 +6,7 @@ import {
   ImageBackground,
 } from "react-native";
 import React, { useEffect, useState } from "react";
+import { ActivityIndicator } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -140,7 +141,7 @@ export default function Gamescreen() {
           style={{ backgroundColor: "rgba(255, 255, 255, 0.1)" }}
           className="flex justify-center items-center m-4 p-4 rounded-lg"
         >
-          <Text className=" text-white font-black text-lg text-dark-400 m-2">
+          <Text className=" text-white font-black text-lg m-2">
             On en est où ?
           </Text>
           <Progress.Bar
@@ -163,7 +164,10 @@ export default function Gamescreen() {
               renderItem={renderQuestion}
             />
           ) : (
-            <Text className=" text-white">Loading questions...</Text>
+            <>
+            <ActivityIndicator size="large" className=" m-4"/>
+            <Text className=" text-white font-semibold text-center text-sm">Loading questions...</Text>
+            </>
           )}
         </View>
         {/* Button */}
