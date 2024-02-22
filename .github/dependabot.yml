@@ -1,0 +1,20 @@
+# .github/dependabot.yml
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "AxelRENAULT92" # Your GitHub username as code reviewer
+    ignore:
+      - dependency-name: "react-native"
+        versions: ["0.72.x"] # Example: Ignoring specific versions
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
