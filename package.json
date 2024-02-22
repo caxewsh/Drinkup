@@ -29,7 +29,7 @@
     "react-native-svg": "13.9.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0",
+    "@babel/core": "^7.23.9",
     "@typescript-eslint/eslint-plugin": "^6.19.0",
     "@typescript-eslint/parser": "^6.19.0",
     "eslint": "^7.32.0 || ^8.2.0",
