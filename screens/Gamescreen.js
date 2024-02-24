@@ -95,9 +95,11 @@ export default function Gamescreen() {
 
     return (
       <View className="items-center">
-        <Text className=" text-gray-800 italic font-semibold text-center text-sm">
+        <View className="bg-white rounded-2xl px-2">
+        <Text className=" text-cyan-700 font-semibold text-center text-xs">
           Thème : {item.Theme}
         </Text>
+        </View>
         <Text className="text-3xl text-white font-black p-4">
           {currentPlayer.name}
         </Text>
@@ -132,8 +134,8 @@ export default function Gamescreen() {
           >
             <HomeIcon color="white" size="30" className="" />
           </TouchableOpacity>
-          <Text className="text-white absolute right-32 text-2xl font-black">
-            DRINKUP
+          <Text className="text-white absolute right-28 text-2xl font-black">
+            DRINK'UP
           </Text>
         </View>
         {/* ProgressBar */}
