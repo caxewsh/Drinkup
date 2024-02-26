@@ -15,7 +15,7 @@
     "@react-navigation/native": "^6.1.10",
     "@react-navigation/native-stack": "^6.9.17",
     "eas-cli": "^7.3.0",
-    "expo": "~49.0.15",
+    "expo": "~50.0.7",
     "expo-status-bar": "~1.11.1",
     "mongodb": "^6.3.0",
     "mongoose": "^8.2.0",
