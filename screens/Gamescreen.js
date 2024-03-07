@@ -28,7 +28,7 @@ export default function Gamescreen() {
   }, []); // Fetch questions and players initially
 
   const fetchQuestions = () => {
-    fetch(`http://192.168.1.66:${port}/api/questions`)
+    fetch(`http://192.168.1.99:${port}/api/questions`)
       .then((response) => response.json())
       .then((data) => {
         const shuffledQuestions = shuffledArray(data);
