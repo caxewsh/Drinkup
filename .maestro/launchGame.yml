@@ -1,0 +1,31 @@
+appId: com.axe.l.r.drinkup
+---
+- launchApp
+- tapOn: "drinkup on MBP-de-Axel"
+- tapOn: "LANCER LA PARTIE"
+
+- assertVisible: "LOBBY"
+- tapOn: "Nom du joueur"
+- inputRandomPersonName
+- pressKey: Enter
+- tapOn: "Nom du joueur"
+- inputRandomPersonName
+- pressKey: Enter
+- tapOn: "Nom du joueur"
+- inputRandomPersonName
+- pressKey: Enter
+- tapOn: "Nom du joueur"
+- inputRandomPersonName
+- pressKey: Enter
+- tapOn: "Nom du joueur"
+- inputRandomPersonName
+- pressKey: Enter
+- tapOn: "ON EST PRET !"
+
+- repeat:
+    while:
+      notVisible: "Fin de Partie"
+    commands:
+      - tapOn: "TOUR SUIVANT"
+
+- stopApp
