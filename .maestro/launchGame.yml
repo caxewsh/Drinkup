@@ -1,7 +1,7 @@
 appId: com.axe.l.r.drinkup
 ---
 - launchApp
-- tapOn: "drinkup on MBP-de-Axel"
+- tapOn: "drinkup on MacBook-Pro-de-Axel.local"
 - tapOn: "LANCER LA PARTIE"
 
 - assertVisible: "LOBBY"
@@ -28,4 +28,6 @@ appId: com.axe.l.r.drinkup
     commands:
       - tapOn: "TOUR SUIVANT"
 
+- tapOn:
+    id: "homeButton"
 - stopApp
