@@ -33,7 +33,7 @@ export default function Endscreen() {
             className="absolute left-8"
             onPress={goToHomescreen}
           >
-            <HomeIcon color="white" size="30" className="" />
+            <HomeIcon color="white" size="30" className="" testID="homeButton" />
           </TouchableOpacity>
           <Text className="text-white absolute left-28 text-2xl font-black">
             Fin de Partie 
