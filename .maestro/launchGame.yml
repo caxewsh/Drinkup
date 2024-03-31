@@ -1,7 +1,8 @@
 appId: com.axe.l.r.drinkup
 ---
 - launchApp
-- tapOn: "drinkup on MacBook-Pro-de-Axel.local"
+- tapOn: # Open the server in 
+    point: "50%,26%"
 - tapOn: "LANCER LA PARTIE"
 
 - assertVisible: "LOBBY"

@@ -6,7 +6,7 @@ import {
   ImageBackground,
 } from "react-native";
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator } from "react-native"
+import { ActivityIndicator } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -16,6 +16,7 @@ import * as Progress from "react-native-progress";
 import { useImage } from "../provider/ImageContext";
 
 export default function Gamescreen() {
+  const [isLoading, setIsLoading] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [players, setPlayers] = useState([]);
@@ -23,34 +24,27 @@ export default function Gamescreen() {
   const { backgroundImageSource } = useImage();
 
   useEffect(() => {
-    fetchQuestions();
-    fetchPlayers();
+    fetchQuestionsAndPlayers();
   }, []); // Fetch questions and players initially
 
-  const fetchQuestions = () => {
-    fetch(`http://192.168.1.66:${port}/api/questions`)
-      .then((response) => response.json())
-      .then((data) => {
-        const shuffledQuestions = shuffledArray(data);
-        setQuestions(shuffledQuestions);
-        console.log("Success fetching questions from API");
-      })
-      .catch((error) => {
-        console.error("Error fetching questions from API:", error);
-      });
-  };
-
-  const fetchPlayers = () => {
-    AsyncStorage.getItem("players")
-      .then((playerData) => {
-        const parsedPlayers = JSON.parse(playerData) || [];
-        const shuffledPlayers = shuffledArray(parsedPlayers);
-        setPlayers(shuffledPlayers);
-        console.log("Success fetching player from asyncStorage");
-      })
-      .catch((error) => {
-        console.error("Error fetching questions from API:", error);
-      });
+  const fetchQuestionsAndPlayers = async () => {
+    setIsLoading(true);
+    try {
+      // Fetch and shuffle questions
+      const questionsResponse = await fetch(`http://192.168.1.99:${port}/api/questions`);
+      const questionsData = await questionsResponse.json();
+      const shuffledQuestions = shuffledArray(questionsData);
+      setQuestions(shuffledQuestions);
+  
+      // Fetch and shuffle players
+      const playerData = await AsyncStorage.getItem("players");
+      const parsedPlayers = JSON.parse(playerData) || [];
+      const shuffledPlayers = shuffledArray(parsedPlayers);
+      setPlayers(shuffledPlayers);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+    setIsLoading(false);
   };
 
   const shuffledArray = (array) => {
@@ -67,47 +61,12 @@ export default function Gamescreen() {
 
   const handleNextRound = () => {
     if (currentQuestionIndex + 1 >= questions.length) {
-      // No more questions, navigate to Endscreen
+      // No more questions, navigate to Endscreen or reset for a new game
       navigation.navigate("End");
     } else {
-      // Fetch new questions and players for the next round
-      fetchQuestions();
-      fetchPlayers();
-      // Update the current question index
-      setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+      // Increment index to move to the next question
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
     }
-  };
-
-  const renderQuestion = ({ item }) => {
-    if (questions.length === 0 || players.length === 0) {
-      return null; // or loading indicator
-    }
-
-    console.log("rendering questions start");
-
-    const currentPlayer = players[currentQuestionIndex % players.length];
-
-    if (!item) {
-      // No more questions, navigate to Endscreen
-      navigation.navigate("End");
-      return null;
-    }
-
-    return (
-      <View className="items-center">
-        <View className="bg-white rounded-2xl px-2">
-        <Text className=" text-cyan-700 font-semibold text-center text-xs">
-          Thème : {item.Theme}
-        </Text>
-        </View>
-        <Text className="text-3xl text-white font-black p-4">
-          {currentPlayer.name}
-        </Text>
-        <Text className="text-white font-semibold text-center text-sm">
-          {item.Questions}
-        </Text>
-      </View>
-    );
   };
 
   const navigation = useNavigation();
@@ -132,7 +91,12 @@ export default function Gamescreen() {
             className="absolute left-8"
             onPress={goToHomescreen}
           >
-            <HomeIcon color="white" size="30" className="" testID="homeButton" />
+            <HomeIcon
+              color="white"
+              size="30"
+              className=""
+              testID="homeButton"
+            />
           </TouchableOpacity>
           <Text className="text-white absolute right-28 text-2xl font-black">
             DRINK'UP
@@ -156,22 +120,39 @@ export default function Gamescreen() {
         {/* Game component */}
         <View
           style={{ backgroundColor: "rgba(255, 255, 255, 0.1)" }}
-          className=" flex m-10 p-10 mx-4 rounded-lg items-center"
+          className="flex m-10 p-10 mx-4 rounded-lg items-center"
         >
-          {questions.length > 0 ? (
-            <FlatList
-              horizontal={false}
-              data={[questions[currentQuestionIndex]]}
-              keyExtractor={(item) => item._id.toString()}
-              renderItem={renderQuestion}
-            />
+          {!isLoading && questions.length > 0 && players.length > 0 ? (
+            (() => {
+              const item = questions[currentQuestionIndex];
+              const currentPlayer =
+                players[currentQuestionIndex % players.length];
+              return (
+                <View className="items-center">
+                  <View className="bg-white rounded-2xl px-2">
+                    <Text className="text-cyan-700 font-semibold text-center text-xs">
+                      Thème : {item.Theme}
+                    </Text>
+                  </View>
+                  <Text className="text-3xl text-center text-white font-black p-4">
+                    {currentPlayer.name}
+                  </Text>
+                  <Text className="text-white font-semibold text-center text-sm">
+                    {item.Questions}
+                  </Text>
+                </View>
+              );
+            })()
           ) : (
             <>
-            <ActivityIndicator size="large" className=" m-4"/>
-            <Text className=" text-white font-semibold text-center text-sm">Loading questions...</Text>
+              <ActivityIndicator size="large" className="m-4" />
+              <Text className="text-white font-semibold text-center text-sm">
+                Loading...
+              </Text>
             </>
           )}
         </View>
+
         {/* Button */}
         <View className="flex  justify-center items-center ">
           <TouchableOpacity
