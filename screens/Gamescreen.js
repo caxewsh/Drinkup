@@ -4,6 +4,7 @@ import {
   TouchableOpacity,
   ImageBackground,
 } from "react-native";
+import Animated, { LightSpeedInRight } from "react-native-reanimated";
 import React, { useEffect, useState } from "react";
 import { ActivityIndicator } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -127,7 +128,7 @@ export default function Gamescreen() {
               const currentPlayer =
                 players[currentQuestionIndex % players.length];
               return (
-                <View className="items-center">
+                <Animated.View className="items-center" key={currentQuestionIndex} entering={LightSpeedInRight} >
                   <View className="bg-white rounded-2xl px-2">
                     <Text className="text-cyan-700 font-semibold text-center text-xs">
                       Thème : {item.Theme}
@@ -139,7 +140,7 @@ export default function Gamescreen() {
                   <Text className="text-white font-semibold text-center text-sm">
                     {item.Questions}
                   </Text>
-                </View>
+                </Animated.View>
               );
             })()
           ) : (

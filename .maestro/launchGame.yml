@@ -1,7 +1,7 @@
 appId: com.axe.l.r.drinkup
 ---
 - launchApp
-- tapOn: # Open the server in 
+- tapOn: # Open the server in dev build if possible
     point: "50%,26%"
 - tapOn: "LANCER LA PARTIE"
 
