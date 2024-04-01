@@ -6,6 +6,7 @@ import {
   FlatList,
   ImageBackground,
 } from "react-native";
+import Animated, { SlideInUp, SlideInDown } from "react-native-reanimated";
 import React, { useEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { TouchableOpacity } from "react-native";
@@ -116,16 +117,16 @@ export default function Lobbyscreen() {
             data={players}
             keyExtractor={(item) => item.id.toString()}
             renderItem={({ item }) => (
-              <View className=" bg-white justify-center items-center p-4 rounded-lg my-2">
+              <Animated.View className=" bg-white justify-center items-center p-4 rounded-lg my-2" entering={SlideInUp} >
                 <Text className=" text-cyan-900 font-semibold">
                   {item.name}
                 </Text>
-              </View>
+              </Animated.View>
             )}
           />
         </View>
         {/* Button */}
-        <View className="flex-1 justify-center items-center ">
+        <Animated.View className="flex-1 justify-center items-center " entering={SlideInDown}>
           <TouchableOpacity
             disabled={!hasMinPlayer}
             onPress={startGame}
@@ -135,7 +136,7 @@ export default function Lobbyscreen() {
               ON EST PRET !
             </Text>
           </TouchableOpacity>
-        </View>
+        </Animated.View>
       </SafeAreaView>
     </View>
   );

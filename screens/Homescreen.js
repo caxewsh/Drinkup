@@ -1,4 +1,5 @@
 import { View, Text, TouchableOpacity, ImageBackground } from "react-native";
+import Animated, { FadeInDown } from "react-native-reanimated";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
@@ -39,6 +40,7 @@ export default function HomeScreen() {
         </View>
         {/* Button */}
         <View className="flex justify-center items-center ">
+          <Animated.View entering={FadeInDown}>
           <TouchableOpacity
             onPress={goToLobby}
             className=" bg-white w-50 px-4 py-4 border-solid rounded-lg mt-4 justify-center align-items-center"
@@ -47,6 +49,7 @@ export default function HomeScreen() {
               LANCER LA PARTIE
             </Text>
           </TouchableOpacity>
+          </Animated.View>
         </View>
       </SafeAreaView>
     </View>
