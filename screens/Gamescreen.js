@@ -4,7 +4,7 @@ import {
   TouchableOpacity,
   ImageBackground,
 } from "react-native";
-import Animated, { LightSpeedInRight } from "react-native-reanimated";
+import Animated, { LightSpeedInRight, FadeOut } from "react-native-reanimated";
 import React, { useEffect, useState } from "react";
 import { ActivityIndicator } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -14,13 +14,13 @@ import { HomeIcon } from "react-native-heroicons/solid";
 import { useNavigation } from "@react-navigation/native";
 import * as Progress from "react-native-progress";
 import { useImage } from "../provider/ImageContext";
+import {API_BASE_URL} from "@env"
 
 export default function Gamescreen() {
   const [isLoading, setIsLoading] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [players, setPlayers] = useState([]);
-  const port = 3000;
   const { backgroundImageSource } = useImage();
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export default function Gamescreen() {
     setIsLoading(true);
     try {
       // Fetch and shuffle questions
-      const questionsResponse = await fetch(`http://192.168.1.99:${port}/api/questions`);
+      const questionsResponse = await fetch(`${API_BASE_URL}/api/questions`);
       const questionsData = await questionsResponse.json();
       const shuffledQuestions = shuffledArray(questionsData);
       setQuestions(shuffledQuestions);
@@ -107,7 +107,7 @@ export default function Gamescreen() {
           style={{ backgroundColor: "rgba(255, 255, 255, 0.1)" }}
           className="flex justify-center items-center m-4 p-4 rounded-lg"
         >
-          <Text className=" text-white font-black text-lg m-2">
+          <Text className=" text-white font-black text-lg mb-10">
             On en est où ?
           </Text>
           <Progress.Bar
@@ -128,7 +128,7 @@ export default function Gamescreen() {
               const currentPlayer =
                 players[currentQuestionIndex % players.length];
               return (
-                <Animated.View className="items-center" key={currentQuestionIndex} entering={LightSpeedInRight} >
+                <Animated.View className="items-center" key={currentQuestionIndex} entering={LightSpeedInRight.duration(500)} exiting={FadeOut} >
                   <View className="bg-white rounded-2xl px-2">
                     <Text className="text-cyan-700 font-semibold text-center text-xs">
                       Thème : {item.Theme}

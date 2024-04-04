@@ -126,7 +126,7 @@ export default function Lobbyscreen() {
           />
         </View>
         {/* Button */}
-        <Animated.View className="flex-1 justify-center items-center " entering={SlideInDown}>
+        <Animated.View className="flex-1 justify-center items-center " entering={SlideInDown.duration(800)}>
           <TouchableOpacity
             disabled={!hasMinPlayer}
             onPress={startGame}
