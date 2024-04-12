@@ -14,7 +14,6 @@ import { HomeIcon } from "react-native-heroicons/solid";
 import { useNavigation } from "@react-navigation/native";
 import * as Progress from "react-native-progress";
 import { useImage } from "../provider/ImageContext";
-import {API_BASE_URL} from "@env"
 
 export default function Gamescreen() {
   const [isLoading, setIsLoading] = useState(false);
@@ -22,6 +21,9 @@ export default function Gamescreen() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [players, setPlayers] = useState([]);
   const { backgroundImageSource } = useImage();
+
+
+  const apiUrl = process.env.API_BASE_URL;
 
   useEffect(() => {
     fetchQuestionsAndPlayers();
@@ -31,7 +33,7 @@ export default function Gamescreen() {
     setIsLoading(true);
     try {
       // Fetch and shuffle questions
-      const questionsResponse = await fetch(`${API_BASE_URL}/api/questions`);
+      const questionsResponse = await fetch(`${apiUrl}/api/questions`);
       const questionsData = await questionsResponse.json();
       const shuffledQuestions = shuffledArray(questionsData);
       setQuestions(shuffledQuestions);
@@ -60,14 +62,16 @@ export default function Gamescreen() {
   };
 
   const handleNextRound = () => {
-    if (currentQuestionIndex + 1 >= questions.length) {
-      // No more questions, navigate to Endscreen or reset for a new game
-      navigation.navigate("End");
-    } else {
-      // Increment index to move to the next question
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
-    }
+    
+      if (currentQuestionIndex + 1 >= questions.length) {
+        // No more questions, navigate to Endscreen or reset for a new game
+        navigation.navigate("End");
+      } else {
+        // Increment index to move to the next question
+        setCurrentQuestionIndex(currentQuestionIndex + 1);
+      } 
   };
+  
 
   const navigation = useNavigation();
   const goToHomescreen = () => {
@@ -157,7 +161,7 @@ export default function Gamescreen() {
         <View className="flex  justify-center items-center ">
           <TouchableOpacity
             onPress={handleNextRound}
-            className=" bg-white w-40 px-4 py-4 border-solid rounded-lg mt-4 justify-center align-items-center"
+            className="bg-white w-40 px-4 py-4 border-solid rounded-lg mt-4 justify-center align-items-center"
           >
             <Text className="text-cyan-900 text-sm text-center font-bold">
               TOUR SUIVANT
