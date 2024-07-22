@@ -15,7 +15,7 @@
     "@react-native-community/progress-view": "^1.4.2",
     "@react-navigation/native": "^6.1.10",
     "@react-navigation/native-stack": "^6.9.17",
-    "eas-cli": "^7.3.0",
+    "eas-cli": "^10.2.1",
     "expo": "~50.0.15",
     "expo-dev-client": "~2.4.13",
     "expo-status-bar": "~1.6.0",
