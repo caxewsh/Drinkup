@@ -3,10 +3,10 @@ import {
   Text,
   TouchableOpacity,
   ImageBackground,
+  ActivityIndicator,
 } from "react-native";
 import Animated, { LightSpeedInRight, FadeOut } from "react-native-reanimated";
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -14,6 +14,7 @@ import { HomeIcon } from "react-native-heroicons/solid";
 import { useNavigation } from "@react-navigation/native";
 import * as Progress from "react-native-progress";
 import { useImage } from "../provider/ImageContext";
+import { supabase } from "../utils/supabase";
 
 export default function Gamescreen() {
   const [isLoading, setIsLoading] = useState(false);
@@ -23,8 +24,6 @@ export default function Gamescreen() {
   const { backgroundImageSource } = useImage();
 
 
-  const apiUrl = process.env.API_BASE_URL;
-
   useEffect(() => {
     fetchQuestionsAndPlayers();
   }, []); // Fetch questions and players initially
@@ -32,19 +31,28 @@ export default function Gamescreen() {
   const fetchQuestionsAndPlayers = async () => {
     setIsLoading(true);
     try {
-      // Fetch and shuffle questions
-      const questionsResponse = await fetch(`${apiUrl}/api/questions`);
-      const questionsData = await questionsResponse.json();
-      const shuffledQuestions = shuffledArray(questionsData);
-      setQuestions(shuffledQuestions);
+    let { data: questionsData, error } = await supabase.from("questions").select("*");
+    if (error) throw error;
   
-      // Fetch and shuffle players
-      const playerData = await AsyncStorage.getItem("players");
-      const parsedPlayers = JSON.parse(playerData) || [];
-      const shuffledPlayers = shuffledArray(parsedPlayers);
-      setPlayers(shuffledPlayers);
+    if (!Array.isArray(questionsData)) {
+      throw new TypeError("Fetched questions data is not an array");
+    }
+  
+    const shuffledQuestions = shuffledArray(questionsData);
+    setQuestions(shuffledQuestions);
+  
+    // Fetch players from AsyncStorage
+    const playerData = await AsyncStorage.getItem("players");
+    const parsedPlayers = JSON.parse(playerData) || [];
+    
+    if (!Array.isArray(parsedPlayers)) {
+      throw new TypeError("Parsed players data is not an array");
+    }
+  
+    const shuffledPlayers = shuffledArray(parsedPlayers);
+    setPlayers(shuffledPlayers);
     } catch (error) {
-      console.error("Error fetching data:", error);
+    console.error("Error fetching data:", error);
     }
     setIsLoading(false);
   };
