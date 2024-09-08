@@ -5,7 +5,7 @@
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
-    "ios": "./scripts/set-ip.sh && expo start --ios",
+    "ios": "expo start --ios",
     "web": "expo start --web",
     "prettier": "prettier 'screens/**/*.js'",
     "test": "maestro test .maestro/",
@@ -16,6 +16,7 @@
     "@react-native-community/progress-view": "^1.4.2",
     "@react-navigation/native": "^6.1.10",
     "@react-navigation/native-stack": "^6.9.17",
+    "@supabase/supabase-js": "^2.45.3",
     "eas-cli": "^7.3.0",
     "expo": "~50.0.20",
     "expo-dev-client": "~3.3.12",
