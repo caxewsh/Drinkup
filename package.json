@@ -12,6 +12,7 @@
     "update:deps": "npx expo install --fix"
   },
   "dependencies": {
+    "@expo/ngrok": "^4.1.0",
     "@react-native-async-storage/async-storage": "1.23.1",
     "@react-native-community/progress-view": "^1.4.2",
     "@react-navigation/native": "^6.1.10",
