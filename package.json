@@ -27,7 +27,7 @@
     "mongoose": "^8.2.0",
     "nativewind": "^2.0.11",
     "react": "18.2.0",
-    "react-native": "0.74.5",
+    "react-native": "0.75.2",
     "react-native-dotenv": "^3.4.11",
     "react-native-fs": "^2.20.0",
     "react-native-heroicons": "^4.0.0",
