@@ -1,9 +1,7 @@
-import { View, Text, TouchableOpacity, ImageBackground } from "react-native";
-import Animated, { FadeInDown } from "react-native-reanimated";
+import { View, ImageBackground } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
-import { Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useImage } from "../provider/ImageContext";
