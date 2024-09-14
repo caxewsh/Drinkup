@@ -27,11 +27,8 @@ export default function HomeScreen() {
         className="absolute h-full w-full"/>
       <SafeAreaView className="flex-1 ">
         <StatusBar style="light" />
-        {/* Header */}
           <Header />
-        {/* GIF */}
           <GifViewer />
-        {/* Button */}
           <StartButton onPress={goToLobby} />
       </SafeAreaView>
     </View>
