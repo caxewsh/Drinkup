@@ -89,11 +89,8 @@ export default function Gamescreen() {
       />
       <SafeAreaView className="flex-1 ">
         <StatusBar style="light" />
-        {/* Header */}
         <GamescreenHeader />
-        {/* ProgressBar */}
         <ProgressBar currentQuestionIndex={currentQuestionIndex} questions={questions} />
-        {/* Game component */}
         <GameCard
           item={questions[currentQuestionIndex]}
           currentPlayer={players[currentQuestionIndex % players.length]}
@@ -102,8 +99,6 @@ export default function Gamescreen() {
           questions={questions}
           currentQuestionIndex={currentQuestionIndex}
         />
-
-        {/* Button */}
         <NextRoundButton onPress={handleNextRound} isLoading={isLoading} />
       </SafeAreaView>
     </View>
