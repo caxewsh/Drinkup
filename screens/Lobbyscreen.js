@@ -1,18 +1,17 @@
 import {
   View,
-  Text,
   SafeAreaView,
-  TextInput,
-  FlatList,
   ImageBackground,
 } from "react-native";
-import Animated, { SlideInUp, SlideInDown } from "react-native-reanimated";
 import React, { useEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useImage } from "../provider/ImageContext";
+import LobbyHeader from "../components/lobbyscreen/LobbyHeader";
+import PlayerNameInput from "../components/lobbyscreen/PlayerNameInput";
+import PlayerGrid from "../components/lobbyscreen/PlayerGrid";
+import LobbyButton from "../components/lobbyscreen/LobbyButton";
 
 export default function Lobbyscreen() {
   const [playerName, setPlayerName] = useState("");
@@ -91,52 +90,14 @@ export default function Lobbyscreen() {
       />
       <SafeAreaView className="flex-1">
         <StatusBar style="light" />
-        {/* Header */}
-        <View className=" pb-10 m-4 justify-center items-center">
-          <Text className="text-white text-2xl font-black">LOBBY</Text>
-        </View>
-        {/* Input playerName */}
-        <View className="flex justify-center items-center">
-          <TextInput
-            value={playerName}
-            onChangeText={(text) => setPlayerName(text)}
-            onSubmitEditing={handleAddPlayer}
-            textAlign="center"
-            placeholder="Nom du joueur"
-            className=" bg-white font-semibold w-5/6 mx-4 h-10 px-4 py-1 rounded-md"
-          />
-        </View>
-        {/* playerGrid */}
-        <View
-          style={{ backgroundColor: "rgba(255, 255, 255, 0.1)" }}
-          className="flex-1 justify-center w-78 m-10 mx-4 p-10 rounded-lg"
-        >
-          <FlatList
-            contentContainerStyle={{ flexGrow: 1 }}
-            horizontal={false}
-            data={players}
-            keyExtractor={(item) => item.id.toString()}
-            renderItem={({ item }) => (
-              <Animated.View className=" bg-white justify-center items-center p-4 rounded-lg my-2" entering={SlideInUp} >
-                <Text className=" text-cyan-900 font-semibold">
-                  {item.name}
-                </Text>
-              </Animated.View>
-            )}
-          />
-        </View>
-        {/* Button */}
-        <Animated.View className="flex-1 justify-center items-center " entering={SlideInDown.duration(800)}>
-          <TouchableOpacity
-            disabled={!hasMinPlayer}
-            onPress={startGame}
-            className=" bg-white absolute top-0 w-40 px-4 py-4 border-solid rounded-lg mt-4 justify-center align-items-center"
-          >
-            <Text className="text-cyan-900 text-sm text-center font-bold">
-              ON EST PRET !
-            </Text>
-          </TouchableOpacity>
-        </Animated.View>
+        <LobbyHeader />
+        <PlayerNameInput
+          onChangeText={setPlayerName}
+          onSubmitEditing={handleAddPlayer}
+          value={playerName}
+        />
+        <PlayerGrid players={players} />
+        <LobbyButton onPress={startGame} disabled={!hasMinPlayer} />
       </SafeAreaView>
     </View>
   );
