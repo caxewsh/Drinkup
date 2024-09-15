@@ -1,20 +1,18 @@
 import {
   View,
-  Text,
-  TouchableOpacity,
   ImageBackground,
-  ActivityIndicator,
 } from "react-native";
-import Animated, { LightSpeedInRight, FadeOut } from "react-native-reanimated";
 import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { HomeIcon } from "react-native-heroicons/solid";
 import { useNavigation } from "@react-navigation/native";
-import * as Progress from "react-native-progress";
 import { useImage } from "../provider/ImageContext";
 import { supabase } from "../utils/supabase";
+import GamescreenHeader from "../components/gamescreen/GamescreenHeader";
+import ProgressBar from "../components/gamescreen/ProgressBar";
+import GameCard from "../components/gamescreen/GameCard";
+import NextRoundButton from "../components/gamescreen/NextRoundButton";
 
 export default function Gamescreen() {
   const [isLoading, setIsLoading] = useState(false);
@@ -68,11 +66,12 @@ export default function Gamescreen() {
     }
     return shuffledArray;
   };
-
+  const navigation = useNavigation();
+  
   const handleNextRound = () => {
     
-      if (currentQuestionIndex + 1 >= questions.length) {
-        // No more questions, navigate to Endscreen or reset for a new game
+    if (currentQuestionIndex + 1 >= questions.length) {
+      // No more questions, navigate to Endscreen or reset for a new game
         navigation.navigate("End");
       } else {
         // Increment index to move to the next question
@@ -80,13 +79,6 @@ export default function Gamescreen() {
       } 
   };
   
-
-  const navigation = useNavigation();
-  const goToHomescreen = () => {
-    navigation.navigate("Home");
-    AsyncStorage.clear();
-  };
-
   return (
     <View className="flex-1">
       <ImageBackground
@@ -98,84 +90,21 @@ export default function Gamescreen() {
       <SafeAreaView className="flex-1 ">
         <StatusBar style="light" />
         {/* Header */}
-        <View className="flex-row m-4 pb-10">
-          <TouchableOpacity
-            className="absolute left-8"
-            onPress={goToHomescreen}
-          >
-            <HomeIcon
-              color="white"
-              size="30"
-              className=""
-              testID="homeButton"
-            />
-          </TouchableOpacity>
-          <Text className="text-white absolute right-28 text-2xl font-black">
-            DRINK'UP
-          </Text>
-        </View>
+        <GamescreenHeader />
         {/* ProgressBar */}
-        <View
-          style={{ backgroundColor: "rgba(255, 255, 255, 0.1)" }}
-          className="flex justify-center items-center m-4 p-4 rounded-lg"
-        >
-          <Text className=" text-white font-black text-lg mb-10">
-            On en est où ?
-          </Text>
-          <Progress.Bar
-            progress={(currentQuestionIndex + 1) / questions.length}
-            width={300}
-            height={10}
-            color="#62C0CC"
-          />
-        </View>
+        <ProgressBar currentQuestionIndex={currentQuestionIndex} questions={questions} />
         {/* Game component */}
-        <View
-          style={{ backgroundColor: "rgba(255, 255, 255, 0.1)" }}
-          className="flex m-10 p-10 mx-4 rounded-lg items-center"
-        >
-          {!isLoading && questions.length > 0 && players.length > 0 ? (
-            (() => {
-              const item = questions[currentQuestionIndex];
-              const currentPlayer =
-                players[currentQuestionIndex % players.length];
-              return (
-                <Animated.View className="items-center" key={currentQuestionIndex} entering={LightSpeedInRight.duration(500)} exiting={FadeOut} >
-                  <View className="bg-white rounded-2xl px-2">
-                    <Text className="text-cyan-700 font-semibold text-center text-xs">
-                      Thème : {item.Theme}
-                    </Text>
-                  </View>
-                  <Text className="text-3xl text-center text-white font-black p-4">
-                    {currentPlayer.name}
-                  </Text>
-                  <Text className="text-white font-semibold text-center text-sm">
-                    {item.Questions}
-                  </Text>
-                </Animated.View>
-              );
-            })()
-          ) : (
-            <>
-              <ActivityIndicator size="large" className="m-4" />
-              <Text className="text-white font-semibold text-center text-sm">
-                Loading...
-              </Text>
-            </>
-          )}
-        </View>
+        <GameCard
+          item={questions[currentQuestionIndex]}
+          currentPlayer={players[currentQuestionIndex % players.length]}
+          isLoading={isLoading}
+          players={players}
+          questions={questions}
+          currentQuestionIndex={currentQuestionIndex}
+        />
 
         {/* Button */}
-        <View className="flex  justify-center items-center ">
-          <TouchableOpacity
-            onPress={handleNextRound}
-            className="bg-white w-40 px-4 py-4 border-solid rounded-lg mt-4 justify-center align-items-center"
-          >
-            <Text className="text-cyan-900 text-sm text-center font-bold">
-              TOUR SUIVANT
-            </Text>
-          </TouchableOpacity>
-        </View>
+        <NextRoundButton onPress={handleNextRound} isLoading={isLoading} />
       </SafeAreaView>
     </View>
   );
