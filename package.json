@@ -20,6 +20,7 @@
     "@supabase/supabase-js": "^2.45.3",
     "eas-cli": "^7.3.0",
     "expo": "^51.0.32",
+    "expo-application": "~5.9.1",
     "expo-asset": "~10.0.10",
     "expo-dev-client": "~4.0.26",
     "expo-status-bar": "~1.12.1",
