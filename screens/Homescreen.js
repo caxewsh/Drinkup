@@ -8,6 +8,7 @@ import { useImage } from "../provider/ImageContext";
 import Header from "../components/homescreen/Header";
 import GifViewer from "../components/homescreen/GifViewer";
 import StartButton from "../components/homescreen/StartButton";
+import VersionNumber from "../components/reusable/VersionNumber";
 
 
 export default function HomeScreen() {
@@ -30,6 +31,7 @@ export default function HomeScreen() {
           <Header />
           <GifViewer />
           <StartButton onPress={goToLobby} />
+          <VersionNumber />
       </SafeAreaView>
     </View>
   );
