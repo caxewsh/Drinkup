@@ -43,7 +43,6 @@ jobs:
           message: |
             ### 🛡️ Snyk Security Results
             ```
-            ${{ env.SNYK_RESULT }}
+            ${{ steps.snyk.outputs.SNYK_RESULT }}
             ```
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        
