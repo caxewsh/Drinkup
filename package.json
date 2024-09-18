@@ -9,7 +9,8 @@
     "web": "expo start --web",
     "prettier": "prettier 'screens/**/*.js'",
     "test": "maestro test .maestro/",
-    "update:deps": "npx expo install --fix"
+    "update:deps": "npx expo install --fix",
+    "update:secrets": "eas secret:push --scope project --env-file .env --force"
   },
   "dependencies": {
     "@expo/ngrok": "^4.1.0",
