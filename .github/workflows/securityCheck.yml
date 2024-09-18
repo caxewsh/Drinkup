@@ -33,8 +33,11 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
     
-      - name: Save Snyk results to output
-        run: echo "SNYK_RESULT=$(cat snyk-results.json)" >> $GITHUB_ENV
+      - name: Read Snyk results
+        id: snyk_results
+        run: |
+          SNYK_RESULT=$(cat snyk-results.json)
+          echo "::set-output name=snyk_result::$SNYK_RESULT"
 
       - name: Comment PR with Snyk results
         if: github.event_name == 'pull_request'
@@ -43,6 +46,6 @@ jobs:
           message: |
             ### 🛡️ Snyk Security Results
             ```
-            ${{ env.SNYK_RESULT }}
+            ${{ steps.snyk_results.outputs.snyk_result }}
             ```
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
