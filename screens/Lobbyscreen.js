@@ -76,6 +76,13 @@ export default function Lobbyscreen() {
     }
   };
 
+  const handleRemovePlayer = (playerId) => {
+    const newPlayers = players.filter((player) => player.id !== playerId);
+    setPlayers(newPlayers);
+    savePlayers(newPlayers);
+    console.log(newPlayers);
+  };
+
   const navigation = useNavigation();
   const startGame = () => {
     navigation.navigate("Game");
@@ -96,7 +103,7 @@ export default function Lobbyscreen() {
           onSubmitEditing={handleAddPlayer}
           value={playerName}
         />
-        <PlayerGrid players={players} />
+        <PlayerGrid players={players} onRemovePlayer={handleRemovePlayer} />
         <LobbyButton onPress={startGame} disabled={!hasMinPlayer} />
       </SafeAreaView>
     </View>
