@@ -12,6 +12,7 @@ import LobbyHeader from "../components/lobbyscreen/LobbyHeader";
 import PlayerNameInput from "../components/lobbyscreen/PlayerNameInput";
 import PlayerGrid from "../components/lobbyscreen/PlayerGrid";
 import LobbyButton from "../components/lobbyscreen/LobbyButton";
+import uuid from "react-native-uuid";
 
 export default function Lobbyscreen() {
   const [playerName, setPlayerName] = useState("");
@@ -65,12 +66,13 @@ export default function Lobbyscreen() {
   };
   const handleAddPlayer = () => {
     if (playerName.trim() !== "" && players.length < 10) {
+      const newPlayer = { id: uuid.v4(), name: playerName }
       const newPlayers = [
         ...players,
-        { id: players.length + 1, name: playerName },
+        newPlayer,
       ];
       setPlayers(newPlayers);
-      console.log("new player set : " + JSON.stringify(newPlayers));
+      console.log("Actual players : " + JSON.stringify(newPlayers));
       savePlayers(newPlayers);
       setPlayerName("");
     }
