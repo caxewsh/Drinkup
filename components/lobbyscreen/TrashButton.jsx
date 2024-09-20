@@ -4,7 +4,7 @@ import { TrashIcon } from "react-native-heroicons/solid";
 
 const TrashButton = ({ onPress }) => {
   return (
-    <View className="">
+    <View testID="trashButton">
       <TouchableOpacity
         onPress={onPress}
         className=""

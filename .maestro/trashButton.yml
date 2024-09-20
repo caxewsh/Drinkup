@@ -1,0 +1,18 @@
+appId: com.axe.l.r.drinkup
+---
+- launchApp
+- tapOn: "LANCER LA PARTIE"
+
+- assertVisible: "LOBBY"
+- tapOn: "Nom du joueur"
+- inputText: "test"
+- pressKey: enter
+- assertVisible: "test"
+- tapOn:
+    id: "trashButton"
+- assertNotVisible: "test"
+- tapOn: "Nom du joueur"
+- inputText: "test"
+- pressKey: enter
+- assertVisible: "test"
+- stopApp
