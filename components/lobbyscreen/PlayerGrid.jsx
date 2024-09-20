@@ -1,9 +1,9 @@
 import React from "react";
 import { View, FlatList, Text } from "react-native";
-import Animated, { SlideInUp } from "react-native-reanimated";
+import Animated, { SlideInUp, FadeOutRight } from "react-native-reanimated";
+import TrashButton from "./TrashButton";
 
-
-const PlayerGrid = ({ players }) => {
+const PlayerGrid = ({ players, onRemovePlayer }) => {
   return (
     <View
       style={{ backgroundColor: "rgba(255, 255, 255, 0.1)" }}
@@ -15,13 +15,16 @@ const PlayerGrid = ({ players }) => {
         data={players}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
-          <Animated.View className=" bg-white justify-center items-center p-4 rounded-lg my-2" entering={SlideInUp}>
-            <Text className=" text-cyan-900 font-semibold">{item.name}</Text>
+          <Animated.View className="bg-white flex p-4 rounded-lg my-2" entering={SlideInUp} exiting={FadeOutRight}>
+            <View className="flex-row justify-between items-center">
+              <Text className="text-cyan-900 font-semibold">{item.name}</Text>
+              <TrashButton onPress={() => onRemovePlayer(item.id)} />
+            </View>
           </Animated.View>
         )}
       />
     </View>
   );
-};  
+};
 
 export default PlayerGrid;
