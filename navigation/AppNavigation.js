@@ -6,6 +6,7 @@ import { LogBox } from "react-native";
 import Lobbyscreen from "../screens/Lobbyscreen";
 import Gamescreen from "../screens/Gamescreen";
 import Endscreen from "../screens/Endscreen";
+import SettingScreen from "../screens/SettingScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -36,6 +37,11 @@ export default function AppNavigation() {
           name="End"
           options={{headerShown:false}}
           component={Endscreen}
+        />
+        <Stack.Screen
+          name="Setting"
+          options={{ headerShown: false }}
+          component={SettingScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>
