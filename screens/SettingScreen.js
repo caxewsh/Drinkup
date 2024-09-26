@@ -5,6 +5,7 @@ import { StatusBar } from "expo-status-bar";
 import { useNavigation } from "@react-navigation/native";
 import { useImage } from "../provider/ImageContext";
 import SettingHeader from "../components/settingscreen/SettingHeader";
+import Settings from "../components/settingscreen/Settings";
 
 
 export default function SettingScreen() {
@@ -25,7 +26,8 @@ export default function SettingScreen() {
       />
       <SafeAreaView className="flex-1 ">
         <StatusBar style="light" />
-        <SettingHeader title="OPTIONS" onPress={goToHomescreen} />
+        <SettingHeader title="PARAMÈTRES" onPress={goToHomescreen} />
+        <Settings />
       </SafeAreaView>
     </View>
   );
