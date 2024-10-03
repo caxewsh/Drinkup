@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState }  from "react";
 import { View, Text, TouchableOpacity, FlatList } from "react-native";
 import { PencilSquareIcon, EnvelopeIcon, ShareIcon, StarIcon } from "react-native-heroicons/solid";
+import SuggestionModal from "./SuggestionModal";
+
 
 const Settings = () => {
-    const showSuggestionModal = () => {
-      console.log("Showing suggestion modal");
+  const [showModal, setShowModal] = useState(false);
+
+  const showSuggestionModal = () => {
+      setShowModal(true);
     };
   
     const contactUs = () => {
@@ -32,12 +36,13 @@ const Settings = () => {
           scrollEnabled={false}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
-            <TouchableOpacity className="flex-row items-center mb-4 p-4 bg-gray-500 rounded-lg" onPress= {item.action} testID="optionButton">
+            <TouchableOpacity className="flex-row items-center mb-4 p-4 rounded-lg" onPress= {item.action} testID="optionButton">
                 {item.icon}
                 <Text className="text-white text-lg font-black mx-6">{item.label}</Text>
             </TouchableOpacity>
           )}
         />
+        {showModal && <SuggestionModal showModal={showModal} setShowModal={setShowModal} />}
     </View>
   );
 };
