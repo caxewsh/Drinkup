@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, FlatList } from "react-native";
 import { PencilSquareIcon, EnvelopeIcon, ShareIcon, StarIcon } from "react-native-heroicons/solid";
 import Animated, { BounceInRight, Easing } from "react-native-reanimated";
 import SuggestionModal from "./SuggestionModal";
+import { Linking } from "react-native";
 
 
 const Settings = () => {
@@ -13,8 +14,19 @@ const Settings = () => {
     };
   
     const contactUs = () => {
-      console.log("Contacting us");
+      const url = "mailto:contact@drinkup.app";
+      
+      Linking.canOpenURL(url)
+        .then((supported) => {
+          if (!supported) {
+            console.log("URL non supportée : " + url);
+          } else {
+            return Linking.openURL(url);
+          }
+        })
+        .catch((err) => console.error("Erreur de lien", err));
     };
+   
   
     const shareApp = () => {
       console.log("Sharing the app");
