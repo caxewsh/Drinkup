@@ -1,6 +1,7 @@
 import React, { useState }  from "react";
 import { View, Text, TouchableOpacity, FlatList } from "react-native";
 import { PencilSquareIcon, EnvelopeIcon, ShareIcon, StarIcon } from "react-native-heroicons/solid";
+import Animated, { BounceInRight, Easing } from "react-native-reanimated";
 import SuggestionModal from "./SuggestionModal";
 
 
@@ -35,11 +36,15 @@ const Settings = () => {
           data={items}
           scrollEnabled={false}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <TouchableOpacity className="flex-row items-center mb-4 p-4 rounded-lg" onPress= {item.action} testID="optionButton">
+          renderItem={({ item, index }) => (
+            <Animated.View
+            entering={BounceInRight.delay(index * 50).duration(1300).easing(Easing.inOut(Easing.quad))}
+            className="flex-row items-center rounded-lg"> 
+            <TouchableOpacity className="flex-row items-center mb-4 p-4 rounded-lg" onPress= {item.action} testID="optionButton" >
                 {item.icon}
                 <Text className="text-white text-lg font-black mx-6">{item.label}</Text>
             </TouchableOpacity>
+            </Animated.View>
           )}
         />
         {showModal && <SuggestionModal showModal={showModal} setShowModal={setShowModal} />}
