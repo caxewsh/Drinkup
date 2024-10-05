@@ -8,8 +8,8 @@ const ProgressBar = ({ currentQuestionIndex, questions }) => {
       style={{ backgroundColor: "rgba(255, 255, 255, 0.1)" }}
       className="flex justify-center items-center m-4 p-4 rounded-lg"
     >
-      <Text className=" text-white font-black text-lg mb-10">
-        On en est où ?
+      <Text className=" text-white font-black text-lg mb-4">
+        Progression
       </Text>
       <Progress.Bar
         progress={(currentQuestionIndex + 1) / questions.length}

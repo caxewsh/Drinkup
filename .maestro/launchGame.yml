@@ -24,6 +24,7 @@ appId: com.axe.l.r.drinkup
 - tapOn: "ON EST PRET !"
 
 - repeat:
+    times: 10
     while:
       notVisible: "Fin de Partie"
     commands:

@@ -1,5 +1,5 @@
 import React, { useState }  from "react";
-import { View, Text, TouchableOpacity, FlatList } from "react-native";
+import { View, Text, TouchableOpacity, FlatList, Share } from "react-native";
 import { PencilSquareIcon, EnvelopeIcon, ShareIcon, StarIcon } from "react-native-heroicons/solid";
 import Animated, { BounceInRight, Easing } from "react-native-reanimated";
 import SuggestionModal from "./SuggestionModal";
@@ -29,7 +29,26 @@ const Settings = () => {
    
   
     const shareApp = () => {
-      console.log("Sharing the app");
+      const onShare = async () => {
+        try {
+          const result = await Share.share({
+            message: "J'ai trouvé Drinkup, un jeu de soirée entre amis qui vous permet de découvrir des nouvelles idées et des nouveautés !",
+            url: "https://drinkup.app",
+          });
+          if (result.action === Share.sharedAction) {
+            if (result.activityType) {
+              // The user cancelled the share action
+            } else {
+              // Share was successful
+            }
+          } else if (result.action === Share.dismissedAction) {
+            // The user dismissed the share action
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      onShare();
     };
   
     const rateApp = () => {

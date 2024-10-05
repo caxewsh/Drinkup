@@ -14,8 +14,9 @@ const SettingButton = () => {
       <TouchableOpacity
         className="absolute left-8"
         onPress={goToSetting}
+        testID="settingButton"
       >
-        <Cog6ToothIcon color="white" size="30" className="" testID="settingButton" />
+        <Cog6ToothIcon color="white" size="30" className="" />
       </TouchableOpacity>
     </View>
   );

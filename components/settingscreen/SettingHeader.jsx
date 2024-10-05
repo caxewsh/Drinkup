@@ -6,7 +6,7 @@ import { ChevronLeftIcon } from "react-native-heroicons/solid";
 export default function SettingHeader( {title, onPress} ) {
   return (
     <View className="flex-row m-4 pb-10">
-        <TouchableOpacity className=" bg-white w-10 h-10 items-start justify-center rounded-full m-2 " onPress={onPress} testID="homeButton">
+        <TouchableOpacity className=" bg-white w-10 h-10 items-start justify-center rounded-full m-2 " onPress={onPress} testID="backButton">
             <ChevronLeftIcon
             color="black"
             size="35"
