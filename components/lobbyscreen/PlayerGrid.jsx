@@ -1,15 +1,24 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { View, FlatList, Text } from "react-native";
 import Animated, { SlideInUp, FadeOutRight } from "react-native-reanimated";
 import TrashButton from "./TrashButton";
 
 const PlayerGrid = ({ players, onRemovePlayer }) => {
+  const flatListRef = useRef();
+
+  useEffect(() => {
+    if (players.length > 0) {
+      flatListRef.current.scrollToEnd({ animated: true });
+    }
+  }, [players]);
+
   return (
     <View
       style={{ backgroundColor: "rgba(255, 255, 255, 0.1)" }}
       className="flex-1 justify-center w-78 m-10 mx-4 p-10 rounded-lg"
     >
       <FlatList
+        ref={flatListRef}
         contentContainerStyle={{ flexGrow: 1 }}
         horizontal={false}
         data={players}

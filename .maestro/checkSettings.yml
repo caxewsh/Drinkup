@@ -1,0 +1,20 @@
+appId: com.axe.l.r.drinkup
+---
+- launchApp
+- assertVisible: "Lancer la partie"
+- tapOn:
+    id: "settingButton"
+- assertVisible: "Paramètres"
+- tapOn: "Proposer des questions"
+- assertVisible: "Ecris-nous ta suggestion :"
+- assertVisible:
+    id: "exitModalButton"
+- tapOn: "Envoyer"
+
+- assertVisible: "PARAMÈTRES"
+- assertVisible: "Nous contacter"
+- assertVisible: "Partager l'application"
+- assertVisible: "Evaluer l'application"
+
+- tapOn:
+    id: "backButton"
