@@ -1,7 +1,7 @@
 appId: com.axe.l.r.drinkup
 ---
 - launchApp
-- assertNotVisible: "Lancer la partie"
+- assertVisible: "Lancer la partie"
 - tapOn:
     id: "settingButton"
 - assertVisible: "Paramètres"
