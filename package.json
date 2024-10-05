@@ -7,7 +7,6 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "prettier": "prettier 'screens/**/*.js'",
     "test": "maestro test .maestro/",
     "update:deps": "npx expo install --fix",
     "update:secrets": "eas secret:push --scope project --env-file .env --force"
