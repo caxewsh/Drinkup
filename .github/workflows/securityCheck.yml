@@ -32,20 +32,3 @@ jobs:
           args: --json-file-output=snyk-results.json
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-    
-      - name: Read Snyk results
-        id: snyk_results
-        run: |
-          SNYK_RESULT=$(cat snyk-results.json)
-          echo "::set-output name=snyk_result::$SNYK_RESULT"
-
-      - name: Comment PR with Snyk results
-        if: github.event_name == 'pull_request'
-        uses: thollander/actions-comment-pull-request@v2
-        with:
-          message: |
-            ### 🛡️ Snyk Security Results
-            ```
-            ${{ steps.snyk_results.outputs.snyk_result }}
-            ```
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
