@@ -8,9 +8,10 @@ import EndscreenHeader from "../components/endscreen/EndscreenHeader";
 import EndscreenButton from "../components/endscreen/EndscreenButton";
 import EndscreenCard from "../components/endscreen/EndscreenCard";
 
-export default function Endscreen() {
+export default function Endscreen({ route }) {
   const { backgroundImageSource } = useImage();
   const navigation = useNavigation();
+  const { players } = route.params;
   const goToHomescreen = () => {
     navigation.navigate("Home");
   };
@@ -30,7 +31,7 @@ export default function Endscreen() {
       <SafeAreaView className="flex-1">
         <StatusBar style="light" />
         <EndscreenHeader onPress={goToHomescreen} />
-        <EndscreenCard />
+        <EndscreenCard players={players} />
         <EndscreenButton onPress={restartGame} />
       </SafeAreaView>
     </View>

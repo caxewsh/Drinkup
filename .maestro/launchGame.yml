@@ -24,12 +24,9 @@ appId: com.axe.l.r.drinkup
 - tapOn: "ON EST PRET !"
 
 - repeat:
-    times: 10
     while:
       notVisible: "Fin de Partie"
     commands:
       - tapOn: "TOUR SUIVANT"
 
-- tapOn:
-    id: "homeButton"
-- stopApp
+
