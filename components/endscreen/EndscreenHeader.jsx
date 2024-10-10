@@ -13,7 +13,7 @@ const EndscreenHeader = ({ onPress }) => {
             <HomeIcon color="white" size="30" className="" testID="homeButton" />
           </TouchableOpacity>
           <Text className="text-white absolute left-28 text-2xl font-black">
-            Fin de Partie 
+            Classement
           </Text>
         </View>
   ) 

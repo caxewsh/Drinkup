@@ -8,6 +8,7 @@ const PlayerNameInput = ({ onChangeText, onSubmitEditing, value }) => {
         value={value}
         onChangeText={onChangeText}
         onSubmitEditing={onSubmitEditing}
+        autoCorrect={false}
         textAlign="center"
         placeholder="Nom du joueur"
         className=" bg-white font-semibold w-5/6 mx-4 h-10 px-4 py-1 rounded-md"

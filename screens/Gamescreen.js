@@ -29,7 +29,7 @@ export default function Gamescreen() {
   const fetchQuestionsAndPlayers = async () => {
     setIsLoading(true);
     try {
-    let { data: questionsData, error } = await supabase.from("questions").select("*");
+    let { data: questionsData, error } = await supabase.from("questionsV3").select("*");
     if (error) throw error;
   
     if (!Array.isArray(questionsData)) {
@@ -41,8 +41,13 @@ export default function Gamescreen() {
   
     // Fetch players from AsyncStorage
     const playerData = await AsyncStorage.getItem("players");
-    const parsedPlayers = JSON.parse(playerData) || [];
+    let parsedPlayers = JSON.parse(playerData) || [];
     
+    parsedPlayers = parsedPlayers.map(player => ({
+      ...player,
+      score: player.score || 0 // Initialize score if not present
+    }));
+
     if (!Array.isArray(parsedPlayers)) {
       throw new TypeError("Parsed players data is not an array");
     }
@@ -68,11 +73,21 @@ export default function Gamescreen() {
   };
   const navigation = useNavigation();
   
-  const handleNextRound = () => {
-    
+  const handleNextRound = async () => {
+    const currentQuestion = questions[currentQuestionIndex];
+    const currentPlayerIndex = currentQuestionIndex % players.length;
+    const currentPlayer = players[currentPlayerIndex];
+
+    currentPlayer.score += currentQuestion.severity || 1;
+    try {
+      await AsyncStorage.setItem("players", JSON.stringify(players));
+    } catch (error) {
+      console.error("Error updating scores:", error);
+    }
+
     if (currentQuestionIndex + 1 >= questions.length) {
       // No more questions, navigate to Endscreen or reset for a new game
-        navigation.navigate("End");
+        navigation.navigate("End", { players });
       } else {
         // Increment index to move to the next question
         setCurrentQuestionIndex(currentQuestionIndex + 1);
