@@ -1,8 +1,9 @@
 import React from "react";
 import { View, Text, ScrollView } from "react-native";
 
-// EndscreenCard.jsx
 const EndscreenCard = ({ players }) => {
+  const sortedPlayers = [...players].sort((a, b) => b.score - a.score);
+
   return (
     <View
       style={{ backgroundColor: "rgba(255, 255, 255, 0.1)" }}
@@ -13,14 +14,13 @@ const EndscreenCard = ({ players }) => {
       </Text>
       
       <ScrollView className="mt-4">
-        {/* Display player scores */}
-        {players.map((player, index) => (
+        {sortedPlayers.map((player, index) => (
           <View key={index} className="flex-row justify-between my-2 p-2 bg-gray-800 rounded-lg">
             <Text className="text-white font-semibold">
-              {player.name} {/* Display player name */}
+              {player.name}
             </Text>
             <Text className="text-white font-semibold">
-              Score: {player.score} {/* Display player score */}
+              Score: {player.score}
             </Text>
           </View>
         ))}
