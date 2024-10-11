@@ -6,26 +6,20 @@ appId: com.axe.l.r.drinkup
 - tapOn: "LANCER LA PARTIE"
 
 - assertVisible: "LOBBY"
-- tapOn: "Nom du joueur"
-- inputRandomPersonName
-- pressKey: Enter
-- tapOn: "Nom du joueur"
-- inputRandomPersonName
-- pressKey: Enter
-- tapOn: "Nom du joueur"
-- inputRandomPersonName
-- pressKey: Enter
-- tapOn: "Nom du joueur"
-- inputRandomPersonName
-- pressKey: Enter
-- tapOn: "Nom du joueur"
-- inputRandomPersonName
-- pressKey: Enter
+
+- repeat:
+    times: 5
+    commands:
+      - tapOn: "Nom du joueur"
+      - inputRandomPersonName
+      - pressKey: Enter
+
+
 - tapOn: "ON EST PRET !"
 
 - repeat:
     while:
-      notVisible: "Fin de Partie"
+      notVisible: "Classement"
     commands:
       - tapOn: "TOUR SUIVANT"
 
