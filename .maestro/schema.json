@@ -91,7 +91,7 @@
           "enum": [
             "home",
             "lock",
-            "enter",
+            "Enter",
             "backspace",
             "volume up",
             "volume down",
@@ -129,7 +129,11 @@
               }
             }
           },
-          "required": ["commands", "times"]
+          "required": ["commands"],
+          "oneOf": [
+            { "required": ["times"] },
+            { "required": ["while"] }
+          ]
         },
         "runFlow": {
           "title": "Runs a flow from a specified file.",

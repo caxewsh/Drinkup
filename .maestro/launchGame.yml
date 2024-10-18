@@ -1,8 +1,7 @@
 appId: com.axe.l.r.drinkup
 ---
 - launchApp
-- tapOn: # Open the server in dev build if possible
-    point: "50%,26%"
+
 - tapOn: "LANCER LA PARTIE"
 
 - assertVisible: "LOBBY"
@@ -14,7 +13,6 @@ appId: com.axe.l.r.drinkup
       - inputRandomPersonName
       - pressKey: Enter
 
-
 - tapOn: "ON EST PRET !"
 
 - repeat:
@@ -22,5 +20,3 @@ appId: com.axe.l.r.drinkup
       notVisible: "Classement"
     commands:
       - tapOn: "TOUR SUIVANT"
-
-

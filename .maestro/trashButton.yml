@@ -6,13 +6,13 @@ appId: com.axe.l.r.drinkup
 - assertVisible: "LOBBY"
 - tapOn: "Nom du joueur"
 - inputText: "test"
-- pressKey: enter
+- pressKey: Enter
 - assertVisible: "test"
 - tapOn:
     id: "trashButton"
 - assertNotVisible: "test"
 - tapOn: "Nom du joueur"
 - inputText: "test"
-- pressKey: enter
+- pressKey: Enter
 - assertVisible: "test"
 - stopApp
