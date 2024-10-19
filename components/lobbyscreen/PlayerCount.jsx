@@ -3,8 +3,7 @@ import { View, Text } from "react-native";
 import { UsersIcon } from "react-native-heroicons/solid";
 import Animated, { useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated";
 
-const PlayerCount = ({ players }) => {
-	const maxPlayers = 10;
+const PlayerCount = ({ players, maxPlayers = 10 }) => {
   const animatedScale = useSharedValue(1);
 
   const animatedStyle = useAnimatedStyle(() => {
@@ -14,7 +13,7 @@ const PlayerCount = ({ players }) => {
   });
 
   useEffect(() => {
-    animatedScale.value = withSpring(1.2, {}, () => {
+    animatedScale.value = withSpring(1.3, {}, () => {
       animatedScale.value = withSpring(1);
     });
   }, [players.length]);
