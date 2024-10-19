@@ -29,7 +29,7 @@ export default function Gamescreen() {
   const fetchQuestionsAndPlayers = async () => {
     setIsLoading(true);
     try {
-    let { data: questionsData, error } = await supabase.from("questionsV3").select("*");
+    let { data: questionsData, error } = await supabase.from("questionsV3").select("Theme, Questions, severity");
     if (error) throw error;
   
     if (!Array.isArray(questionsData)) {
