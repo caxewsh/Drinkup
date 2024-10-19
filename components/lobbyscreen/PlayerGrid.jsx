@@ -15,7 +15,7 @@ const PlayerGrid = ({ players, onRemovePlayer }) => {
   return (
     <View
       style={{ backgroundColor: "rgba(255, 255, 255, 0.1)" }}
-      className="flex-1 justify-center w-78 m-10 mx-4 p-10 rounded-lg"
+      className="flex-1 justify-center w-78 m-4 mx-4 p-10 rounded-lg"
     >
       <FlatList
         ref={flatListRef}

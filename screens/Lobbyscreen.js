@@ -10,6 +10,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useImage } from "../provider/ImageContext";
 import LobbyHeader from "../components/lobbyscreen/LobbyHeader";
 import PlayerNameInput from "../components/lobbyscreen/PlayerNameInput";
+import PlayerCount from "../components/lobbyscreen/PlayerCount";
 import PlayerGrid from "../components/lobbyscreen/PlayerGrid";
 import LobbyButton from "../components/lobbyscreen/LobbyButton";
 import uuid from "react-native-uuid";
@@ -105,6 +106,7 @@ export default function Lobbyscreen() {
           onSubmitEditing={handleAddPlayer}
           value={playerName}
         />
+        <PlayerCount players={players} />
         <PlayerGrid players={players} onRemovePlayer={handleRemovePlayer} />
         <LobbyButton onPress={startGame} disabled={!hasMinPlayer} />
       </SafeAreaView>
