@@ -17,7 +17,7 @@
     "@react-native-community/progress-view": "^1.4.2",
     "@react-navigation/native": "^6.1.10",
     "@react-navigation/native-stack": "^6.9.17",
-    "@supabase/supabase-js": "^2.45.3",
+    "@supabase/supabase-js": "^2.45.6",
     "eas-cli": "^7.3.0",
     "expo": "~51.0.38",
     "expo-application": "~5.9.1",
