@@ -20,6 +20,10 @@ export default function HomeScreen() {
     AsyncStorage.clear();
     navigation.navigate("Lobby");
   };
+
+  const goToMode = () => {
+    navigation.navigate("Mode");
+  };
   /* eslint-disable react/no-unescaped-entities */ 
   return (
     <View className="flex-1">
@@ -31,7 +35,7 @@ export default function HomeScreen() {
         <StatusBar style="light" />
           <Header />
           <GifViewer />
-          <StartButton onPress={goToLobby} />
+          <StartButton onPress={goToMode} />
           <VersionNumber />
           <SettingButton />
       </SafeAreaView>

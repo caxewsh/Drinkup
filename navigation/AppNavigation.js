@@ -7,6 +7,7 @@ import Lobbyscreen from "../screens/Lobbyscreen";
 import Gamescreen from "../screens/Gamescreen";
 import Endscreen from "../screens/Endscreen";
 import SettingScreen from "../screens/SettingScreen";
+import Modescreen from "../screens/Modescreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -42,6 +43,11 @@ export default function AppNavigation() {
           name="Setting"
           options={{ headerShown: false }}
           component={SettingScreen}
+        />
+        <Stack.Screen
+          name="Mode"
+          options={{ headerShown: false }}
+          component={Modescreen}
         />
       </Stack.Navigator>
     </NavigationContainer>
