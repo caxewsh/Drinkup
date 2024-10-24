@@ -15,13 +15,9 @@ import SettingButton from "../components/homescreen/SettingButton";
 export default function HomeScreen() {
   const navigation = useNavigation();
   const {backgroundImageSource} = useImage();
-
-  const goToLobby = () => {
-    AsyncStorage.clear();
-    navigation.navigate("Lobby");
-  };
-
+  
   const goToMode = () => {
+    AsyncStorage.clear();
     navigation.navigate("Mode");
   };
   /* eslint-disable react/no-unescaped-entities */ 
