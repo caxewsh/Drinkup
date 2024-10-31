@@ -26,7 +26,7 @@ export default function Modescreen() {
       />
       <SafeAreaView className="flex-1 ">
         <StatusBar style="light" />
-        <SettingHeader title="MODE DE JEU" onPress={goToHomescreen} />
+        <SettingHeader title="MODES DE JEU" onPress={goToHomescreen} />
         <View
           style={{ backgroundColor: "rgba(255, 255, 255, 0.1)" }}
           className="flex m-10 p-10 mx-4 rounded-lg items-center"
