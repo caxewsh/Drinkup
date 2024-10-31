@@ -4,6 +4,9 @@ appId: com.axe.l.r.drinkup
 
 - tapOn: "LANCER LA PARTIE"
 
+- assertVisible: "MODES DE JEU"
+- tapOn: "Choisir"
+ 
 - assertVisible: "LOBBY"
 
 - repeat:

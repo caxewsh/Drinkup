@@ -15,10 +15,10 @@ import SettingButton from "../components/homescreen/SettingButton";
 export default function HomeScreen() {
   const navigation = useNavigation();
   const {backgroundImageSource} = useImage();
-
-  const goToLobby = () => {
+  
+  const goToMode = () => {
     AsyncStorage.clear();
-    navigation.navigate("Lobby");
+    navigation.navigate("Mode");
   };
   /* eslint-disable react/no-unescaped-entities */ 
   return (
@@ -31,7 +31,7 @@ export default function HomeScreen() {
         <StatusBar style="light" />
           <Header />
           <GifViewer />
-          <StartButton onPress={goToLobby} />
+          <StartButton onPress={goToMode} />
           <VersionNumber />
           <SettingButton />
       </SafeAreaView>

@@ -10,7 +10,7 @@ const EndscreenCard = ({ players }) => {
       className="flex-1 justify-center w-78 m-10 mx-4 p-10 rounded-lg"
     >
       <Text className="text-white font-semibold text-center text-sm mb-4">
-        Plus tu prends chères, plus tu accumules les points ! Voici les scores :
+        Les défis les plus fous te rapportent gros ! Découvre ton score :
       </Text>
       
       <ScrollView className="mt-4">
