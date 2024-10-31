@@ -19,7 +19,7 @@
     "@react-navigation/native": "^6.1.10",
     "@react-navigation/native-stack": "^6.9.17",
     "@supabase/supabase-js": "^2.45.3",
-    "eas-cli": "^7.3.0",
+    "eas-cli": "^12.6.2",
     "expo": "~51.0.38",
     "expo-application": "~5.9.1",
     "expo-asset": "~10.0.10",
