@@ -3,6 +3,33 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 import Carousel from "react-native-snap-carousel";
 import { useNavigation } from "@react-navigation/native";
 
+// Memoized functional component for each item
+const CarouselItem = React.memo(({ item, navigation }) => (
+    <View className="bg-white rounded-lg shadow-md overflow-hidden opacity-100 disabled:opacity-50">
+        <Image
+            source={item.image}
+            className="w-full h-40"
+            resizeMode="cover"
+        />
+        <View className="p-4">
+            <Text className="text-cyan-900 text-center font-bold text-lg mb-2">
+                {item.title}
+            </Text>
+            <TouchableOpacity
+                onPress={() => item.available && navigation.navigate("Lobby")}
+                className={`py-2 px-4 rounded-full ${
+                    item.available ? 'bg-cyan-700' : 'bg-gray-400'
+                }`}
+                disabled={!item.available}
+            >
+                <Text className="text-white text-center">
+                    {item.available ? 'Choisir' : 'Indisponible'}
+                </Text>
+            </TouchableOpacity>
+        </View>
+    </View>
+));
+
 const GameModeCarousel = () => {
     const navigation = useNavigation();
 
@@ -28,29 +55,7 @@ const GameModeCarousel = () => {
     ];
 
     const renderItem = ({ item }) => (
-        <View className="bg-white rounded-lg shadow-md overflow-hidden opacity-100 disabled:opacity-50">
-            <Image
-                source={item.image}
-                className="w-full h-40"
-                resizeMode="cover"
-            />
-            <View className="p-4">
-                <Text className="text-cyan-900 text-center font-bold text-lg mb-2">
-                    {item.title}
-                </Text>
-                <TouchableOpacity
-                    onPress={() => item.available && navigation.navigate("Lobby")}
-                    className={`py-2 px-4 rounded-full ${
-                        item.available ? 'bg-cyan-700' : 'bg-gray-400'
-                    }`}
-                    disabled={!item.available}
-                >
-                    <Text className="text-white text-center">
-                        {item.available ? 'Choisir' : 'Indisponible'}
-                    </Text>
-                </TouchableOpacity>
-            </View>
-        </View>
+        <CarouselItem item={item} navigation={navigation} />
     );
 
     return (
@@ -63,6 +68,7 @@ const GameModeCarousel = () => {
                 loop
                 autoplay
                 autoplayInterval={5000}
+                initialNumToRender={3} // Adjust for better performance
             />
         </View>
     );
