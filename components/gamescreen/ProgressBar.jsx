@@ -11,7 +11,7 @@ const ProgressBar = ({ currentQuestionIndex, questions }) => {
         progress={(currentQuestionIndex + 1) / questions.length}
         width={300}
         height={10}
-        color="#62C0CC"
+        color="#FFFFFF"
       />
     </View>
   );

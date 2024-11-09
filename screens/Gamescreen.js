@@ -90,7 +90,6 @@ export default function Gamescreen() {
     }
 
     if (currentQuestionIndex + 1 >= questions.length) {
-<InfoBloc info={isLoading ? "Loading..." : questions[currentQuestionIndex]?.Instructions || "No instructions available."} />
         navigation.navigate("End", { players });
       } else {
         // Increment index to move to the next question

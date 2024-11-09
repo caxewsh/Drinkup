@@ -26,7 +26,7 @@ const SuggestionModal = ({ showModal, setShowModal }) => {
     >
       <View className="flex-1 justify-center items-center bg-black/50" >
         {/* Modale centrée */}
-        <View className="bg-cyan-900 p-6 rounded-lg w-11/12" >
+        <View className=" p-6 rounded-lg w-11/12" style={{ backgroundColor: "rgba(24, 164, 129, 0.9)" }} >
             <View className="flex">
                 <TouchableOpacity onPress={() => setShowModal(false)} className="self-end">
                     <XCircleIcon color="white" size="30" className="mb-4" testID="exitModalButton" />
@@ -45,8 +45,8 @@ const SuggestionModal = ({ showModal, setShowModal }) => {
             onChangeText={handleChange}
             value={suggestion}
           />
-          <TouchableOpacity onPress={handleSubmit} className="self-end">
-            <Text className="text-white text-lg font-semibold">Envoyer</Text>
+          <TouchableOpacity onPress={handleSubmit} className="self-end bg-black p-2 rounded-xl">
+            <Text className="text-white text-lg font-semibold mx-2">Envoyer</Text>
           </TouchableOpacity>
         </View>
       </View>
