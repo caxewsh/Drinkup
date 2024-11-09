@@ -13,6 +13,7 @@ import GamescreenHeader from "../components/gamescreen/GamescreenHeader";
 import ProgressBar from "../components/gamescreen/ProgressBar";
 import GameCard from "../components/gamescreen/GameCard";
 import NextRoundButton from "../components/gamescreen/NextRoundButton";
+import InfoBloc from "../components/gamescreen/InfoBloc";
 
 export default function Gamescreen() {
   const [isLoading, setIsLoading] = useState(false);
@@ -29,7 +30,7 @@ export default function Gamescreen() {
   const fetchQuestionsAndPlayers = async () => {
     setIsLoading(true);
     try {
-    let { data: questionsData, error } = await supabase.from("questionsV3").select("Theme, Questions, severity");
+    let { data: questionsData, error } = await supabase.from("questionsV4").select("Theme, Questions, severity, Instructions");
     if (error) throw error;
   
     if (!Array.isArray(questionsData)) {
@@ -37,21 +38,24 @@ export default function Gamescreen() {
     }
   
     const shuffledQuestions = shuffledArray(questionsData);
-    setQuestions(shuffledQuestions);
+  
+    // Limit the questions to 45
+    const limitedQuestions = shuffledQuestions.slice(0, 45);
+    setQuestions(limitedQuestions);
   
     // Fetch players from AsyncStorage
     const playerData = await AsyncStorage.getItem("players");
     let parsedPlayers = JSON.parse(playerData) || [];
-    
+  
     parsedPlayers = parsedPlayers.map(player => ({
       ...player,
       score: player.score || 0 // Initialize score if not present
     }));
-
+  
     if (!Array.isArray(parsedPlayers)) {
       throw new TypeError("Parsed players data is not an array");
     }
-  
+    
     const shuffledPlayers = shuffledArray(parsedPlayers);
     setPlayers(shuffledPlayers);
     } catch (error) {
@@ -86,7 +90,7 @@ export default function Gamescreen() {
     }
 
     if (currentQuestionIndex + 1 >= questions.length) {
-      // No more questions, navigate to Endscreen or reset for a new game
+<InfoBloc info={isLoading ? "Loading..." : questions[currentQuestionIndex]?.Instructions || "No instructions available."} />
         navigation.navigate("End", { players });
       } else {
         // Increment index to move to the next question
@@ -106,6 +110,7 @@ export default function Gamescreen() {
         <StatusBar style="light" />
         <GamescreenHeader />
         <ProgressBar currentQuestionIndex={currentQuestionIndex} questions={questions} />
+        <InfoBloc info={isLoading ? "Loading..." : questions[currentQuestionIndex]?.Instructions || "No instructions available."} />
         <GameCard
           item={questions[currentQuestionIndex]}
           currentPlayer={players[currentQuestionIndex % players.length]}
