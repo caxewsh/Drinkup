@@ -4,14 +4,16 @@ import { XCircleIcon } from "react-native-heroicons/solid";
 
 const SuggestionModal = ({ showModal, setShowModal }) => {
   const [suggestion, setSuggestion] = React.useState("");
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
 
   const handleChange = (text) => {
     setSuggestion(text);
   };
 
   const handleSubmit = () => {
+    setIsSubmitting(true);
     console.log("Submitted suggestion");
-    setShowModal(false); // Fermer la modale après soumission
+    setShowModal(false); // Close the modal after submission
   };
 
   return (
@@ -45,8 +47,11 @@ const SuggestionModal = ({ showModal, setShowModal }) => {
             onChangeText={handleChange}
             value={suggestion}
           />
-          <TouchableOpacity onPress={handleSubmit} className="self-end bg-black p-2 rounded-xl">
-            <Text className="text-white text-lg font-semibold mx-2">Envoyer</Text>
+          <TouchableOpacity 
+            onPress={handleSubmit} 
+            className="self-end bg-black p-2 rounded-xl"
+            accessibilityLabel="Envoyer">
+            <Text className="text-white text-lg font-semibold mx-2">{isSubmitting ? "Envoi en cours..." : "Envoyer"}</Text>
           </TouchableOpacity>
         </View>
       </View>
