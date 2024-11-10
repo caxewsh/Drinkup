@@ -8,7 +8,7 @@ const GameCard = ({ isLoading, players, questions, currentQuestionIndex }) => {
     return (
         <View
           style={{ backgroundColor: "rgba(255, 255, 255, 0.1)" }}
-          className="flex m-10 p-10 mx-4 rounded-lg items-center"
+          className="flex m-6 p-10 mx-4 rounded-lg items-center"
         >
           {!isLoading && questions.length > 0 && players.length > 0 ? (
             (() => {
