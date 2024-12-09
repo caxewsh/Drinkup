@@ -27,7 +27,7 @@
     "expo-insights": "~0.7.0",
     "expo-status-bar": "~1.12.1",
     "mongodb": "^6.3.0",
-    "mongoose": "^8.2.0",
+    "mongoose": "^8.8.4",
     "nativewind": "^2.0.11",
     "patch-package": "^8.0.0",
     "postinstall-postinstall": "^2.1.0",
